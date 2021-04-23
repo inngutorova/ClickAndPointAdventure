@@ -25,10 +25,9 @@ public class NPC {
         this.image = image;
         this.dialogues = dialogues;
         currentDialogue = -1;
-
-
     }
 
+    //отрисовка
     public void draw(Graphics g) {
         g.drawImage(image, x, y, width, height, null);
         g.setColor(Color.white);
@@ -41,14 +40,13 @@ public class NPC {
         }
     }
 
+    //проверка клика по персонажу (для диалогов)
     public void checkClick(MouseEvent e) {
         int xx = e.getX();
         int yy = e.getY();
 
         if (xx > x && xx < x + width && yy > y && yy < y + height) {
-            System.out.println("There???");
             clicked = true;
         }
     }
-
 }
