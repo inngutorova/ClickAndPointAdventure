@@ -50,7 +50,7 @@ public class Dialogue {
                         for (int i = 0; i < phrases0.get(n).response.length; ++i) {
                             phrases0.get(n).response[i] = new Response();
                             phrases0.get(n).response[i].height = 100 / phrases0.get(n).response.length;
-                            phrases0.get(n).response[i].y = 720 - (phrases0.get(n).response.length - i) * phrases0.get(n).response[i].height;
+                            phrases0.get(n).response[i].y = 720 - (phrases0.get(n).response.length - i) * phrases0.get(n).response[i].height-25;
                         }
                     }
                     if (k >= 3) {
