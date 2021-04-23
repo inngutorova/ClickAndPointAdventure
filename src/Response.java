@@ -9,6 +9,7 @@ public class Response {
     public Response(){
     }
 
+    //метод, который позволет вписать текст в определенную область, то есть переносит слова на следующую строчку, когда они не помещаются
     public void writeInRect(Graphics g) {
         int x =0;
         int width = 720;
