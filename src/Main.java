@@ -105,28 +105,12 @@ public class Main {
         NPC magdalene = new NPC(470,250,90, "Магдалина Ли", -10, ImageIO.read(new File(path + "Pictures\\Magdalene.png")), dMagdalene);
         magdalene.currentDialogue = 0;
 
-//        ArrayList<Dialogue> dDavid = new ArrayList<>();
-//        dDavid.add(new Dialogue(1));
-//        dDavid.get(0).read(path + "Не знакомы.txt");
-//        dDavid.add(new Dialogue(0));
-//        dDavid.get(1).read(path + "(12) Допрос Дэвида.txt");
-//        NPC david = new NPC(450,240,250, "Дэвид Ли", 60, ImageIO.read(new File(path + "Pictures\\bc21448253860e54346553ab36f74392-man-jacket-tie-trousers-flat-by-vexels.png")), dDavid);
-//        david.currentDialogue = 0;
-//
-//        ArrayList<Dialogue> dHilda = new ArrayList<>();
-//        dHilda.add(new Dialogue(1));
-//        dHilda.get(0).read(path + "Не знакомы.txt");
-//        dHilda.add(new Dialogue(0));
-//        dHilda.get(1).read(path + "(13) Допрос Хильды.txt");
-//        NPC hilda = new NPC(450,240,250, "Хильда Ли", 60, ImageIO.read(new File(path + "Pictures\\bc21448253860e54346553ab36f74392-man-jacket-tie-trousers-flat-by-vexels.png")), dDavid);
-//        hilda.currentDialogue = 0;
-//
         ArrayList<Dialogue> dPilar = new ArrayList<>();
         dPilar.add(new Dialogue(1));
         dPilar.get(0).read(path + "Не знакомы.txt");
         dPilar.add(new Dialogue(0));
         dPilar.get(1).read(path + "(12) Допрос Пилар.txt");
-        NPC pilar = new NPC(450,240,250, "Пилар Эстравадос", 60, ImageIO.read(new File(path + "Pictures\\bc21448253860e54346553ab36f74392-man-jacket-tie-trousers-flat-by-vexels.png")), dPilar);
+        NPC pilar = new NPC(450,240,250, "Пилар Эстравадос", 60, ImageIO.read(new File(path + "Pictures\\Pilar.png")), dPilar);
         pilar.currentDialogue = 0;
 
         ArrayList<NPC> npc0 = new ArrayList<>();
