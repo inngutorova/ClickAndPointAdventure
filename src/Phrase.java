@@ -9,6 +9,7 @@ public class Phrase {
         this.text = text;
     }
 
+    //метод, который позволет вписать текст в определенную область, то есть переносит слова на следующую строчку, когда они не помещаются
     public void writeInRect(Graphics g, String text, int x, int y, int width, int height) {
         Font f = new Font("TimesRoman", Font.PLAIN, 15);
         g.setFont(f);
