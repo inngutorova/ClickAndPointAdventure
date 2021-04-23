@@ -1,4 +1,3 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -42,13 +41,14 @@ public class MyPanel extends JPanel implements MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         try {
-            playerCharacter.update();
+            playerCharacter.update();    //обновление игрока
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        room.draw(g);
+        room.draw(g);        //отрисовка комнаты
 
+        //отрисовка игрока и npc, порядок зависит от координат
         for (int i = 0; i < room.npc.size(); ++i) {
             if (room.npc.get(i).y + room.npc.get(i).height < playerCharacter.y + playerCharacter.height) {
                 room.npc.get(i).draw(g);
@@ -63,28 +63,31 @@ public class MyPanel extends JPanel implements MouseListener {
             }
         }
 
+        //отрисовка сообщения при нахождении предмета
         for (int i = 0; i < room.objects.size(); ++i) {
             room.objects.get(i).drawMessage(g);
         }
 
+        //отрисовка всех нижних кнопок
         map.button.draw(g);
         inventory.button.draw(g);
+        ending.draw(g);
 
+        //отрисовка раскрытых карты и инвентаря
         if (map.opened) {
             map.draw(g);
         }
         inventory.update();
         inventory.draw(g);
-        ending.draw(g);
 
-
+        //отрисовка диалогов
         for (int i = 0; i < room.npc.size(); ++i) {
             if (room.npc.get(i).talking && room.npc.get(i).clicked && room.npc.get(i).currentDialogue != -1) {
                 room.npc.get(i).dialogues.get(room.npc.get(i).currentDialogue).draw(g);
             }
         }
 
-
+        //стартовое окно с сюжетным введением
         if (start) {
             g.setColor(Color.black);
             g.fillRect(0, 0, 720, 720);
@@ -94,6 +97,7 @@ public class MyPanel extends JPanel implements MouseListener {
             map.rooms[1].objects.get(0).writeInRect(g, start3, 30, 390, 530, 100);
         }
 
+        //отрисовка затемнения
         if (gettingDarker) {
                 visibility = visibility + 1;
             Color dark = new Color(0, 0, 0, visibility);
@@ -108,6 +112,7 @@ public class MyPanel extends JPanel implements MouseListener {
             g.fillRect(0, 0, 720, 720);
         }
 
+        //отрисовка выбора
         if(end) {
             g.setColor(Color.black);
             g.fillRect(0,0,720,720);
@@ -148,6 +153,7 @@ public class MyPanel extends JPanel implements MouseListener {
             start = false;
         }
 
+        //проверка клика по предметам и по кнопке ок при открытом сообщении, добавление собранных предметов в инвентарь
         for (int i = 0; i < room.objects.size(); ++i) {
             if (!room.objects.get(i).got) {
                 room.objects.get(i).checkClick(e);
@@ -155,12 +161,13 @@ public class MyPanel extends JPanel implements MouseListener {
                     room.objects.get(i).ok.checkClick(e);
                 }
             }
-            if (room.objects.get(i).got && room.objects.get(i).inInvent == false) {
+            if (room.objects.get(i).got && !room.objects.get(i).inInvent) {
                 inventory.objects.add(room.objects.get(i));
                 room.objects.get(i).inInvent = true;
             }
         }
 
+        //проверка клика по предметам в инвентаре и по кнопке ок при открытом сообщении
         if (inventory.objects.size() != 0 && inventory.opened) {
             for (int i = 0; i < inventory.objects.size(); ++i) {
                 inventory.objects.get(i).checkClick(e);
@@ -170,34 +177,38 @@ public class MyPanel extends JPanel implements MouseListener {
             }
         }
 
+        //проверка кнопок нижней панели
         map.button.checkClick(e);
         inventory.button.checkClick(e);
+        ending.checkClick(e);
 
+        //проверка кнопки "закрыть инвентарь"
         if (inventory.opened) {
             inventory.close.checkClick(e);
         }
 
+        //смена комнаты
         if (map.opened) {
             map.changeRoom(e);
             room = map.rooms[map.currentRoom];
         }
 
-
+        //проверка для начала диалога
         for (int i = 0; i < room.npc.size(); ++i) {
             if (room.npc.get(i).x < playerCharacter.x + 200 && room.npc.get(i).x > playerCharacter.x - 200 && !map.opened) {
                 room.npc.get(i).checkClick(e);
                 room.npc.get(i).talking = true;
-                System.out.println("Is it that thing");
             }
         }
 
+        //проверка для переключения фраз в диалогах
         for (int i = 0; i < room.npc.size(); ++i) {
             if (room.npc.get(i).talking && room.npc.get(i).clicked && room.npc.get(i).currentDialogue != -1 && !map.opened) {
                 room.npc.get(i).dialogues.get(room.npc.get(i).currentDialogue).checkClick(e);
-                System.out.println("Or that");
             }
         }
-        ending.checkClick(e);
+
+        //проверка итогового выбора
         if (end && !right && !wrong) {
             if(firstEnd) {
                 if (e.getY() > 450 && e.getY() < 470) {
