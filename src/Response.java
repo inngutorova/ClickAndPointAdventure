@@ -34,7 +34,7 @@ public class Response {
         }
         strings.set(n, text);
         for (int i = 0; i <= strings.size() - 1; i++) {
-            g.drawString(strings.get(i), x + 30, y  + i * 20);
+            g.drawString(strings.get(i), x + 10, y  + i * 20);
         }
     }
 }
