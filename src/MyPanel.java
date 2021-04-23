@@ -80,10 +80,6 @@ public class MyPanel extends JPanel implements MouseListener {
 
         for (int i = 0; i < room.npc.size(); ++i) {
             if (room.npc.get(i).talking && room.npc.get(i).clicked && room.npc.get(i).currentDialogue != -1) {
-//                System.out.println("drawing");
-//                System.out.println(i);
-//                System.out.println(room.npc.get(i).talking);
-//                System.out.println(room.npc.get(i).clicked);
                 room.npc.get(i).dialogues.get(room.npc.get(i).currentDialogue).draw(g);
             }
         }
@@ -116,25 +112,29 @@ public class MyPanel extends JPanel implements MouseListener {
             g.setColor(Color.black);
             g.fillRect(0,0,720,720);
             g.setColor(Color.white);
-            g.drawString("Кто же убийца?", 300, 320);
+            g.drawString("Кто же убийца?", 300, 300);
             g.drawString("Альфред Ли?", 300, 340);
-            g.drawString("Гарри Ли?", 300, 360);
+            g.drawString("Джордж Ли?", 300, 360);
             g.drawString("Лидия Ли?", 300, 380);
             g.drawString("Магдалина Ли?", 300, 400);
+            g.drawString("Гарри Ли?", 300, 420);
+            g.drawString("Пилар Эстравадос?", 300, 440);
+            g.drawString("Инспектор Сагден?", 300, 460);
+
         }
 
         if(right) {
             g.setColor(Color.black);
             g.fillRect(0,0,720,720);
             g.setColor(Color.white);
-            g.drawString("Вы угадали!", 350, 320);
+            g.drawString("Вы угадали!", 300, 320);
         }
 
         if(wrong) {
             g.setColor(Color.black);
             g.fillRect(0,0,720,720);
             g.setColor(Color.white);
-            g.drawString("Вы не правы!", 350, 320);
+            g.drawString("Вы не правы!", 300, 320);
         }
 
 
@@ -200,7 +200,7 @@ public class MyPanel extends JPanel implements MouseListener {
         ending.checkClick(e);
         if (end && !right && !wrong) {
             if(firstEnd) {
-                if (e.getY() > 370 && e.getY() < 390) {
+                if (e.getY() > 450 && e.getY() < 470) {
                     right = true;
                 } else wrong = true;
             }
