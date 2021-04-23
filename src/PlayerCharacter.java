@@ -14,7 +14,6 @@ public class PlayerCharacter {
     BufferedImage currentImage;
     Room room;
     int direction = 1;
-
     Controller controller = new Controller(this);
 
     public PlayerCharacter (Room room) throws IOException {
@@ -25,12 +24,12 @@ public class PlayerCharacter {
         currentImage = imageRight;
     }
 
+    //отрисовка
     public void draw(Graphics g) {
-//        g.setColor(Color.red);
-//        g.fillRect(x, y, width, height);
         g.drawImage(currentImage, x, y, width, height, null);
     }
 
+    //изменение картинки в зависимости от направления движения
     public void update() throws IOException {
         if (direction == 1) {
             currentImage = imageRight;
