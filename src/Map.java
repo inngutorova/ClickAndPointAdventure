@@ -20,6 +20,7 @@ public class Map {
         currentRoom = 0;
     }
 
+    //отрисовка
     public void draw(Graphics g) {
         g.setColor(Color.white);
         g.fillRect(200, 200, 320, 320);
@@ -35,7 +36,7 @@ public class Map {
         g.drawString(rooms[3].name, 360-40, 460);
     }
 
-
+    //смена комнат в зависимости от координат клика
     public void changeRoom(MouseEvent e) {
         if (e.getX() > 240 && e.getX() < 480 && e.getY() > 240 && e.getY() < 300) {
             currentRoom = 0;
