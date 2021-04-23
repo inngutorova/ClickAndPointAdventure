@@ -1,24 +1,25 @@
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        String path = new String();
-        path = "G:\\Java\\ClickAndPointAdventure\\src\\";  // + in Inventory
+        String path;
+        path = "G:\\Java\\ClickAndPointAdventure\\src\\";
 
+        //создание рамки
         JFrame frame = new JFrame();
-        frame.setTitle("Click and Point Adventure");
+        frame.setTitle("Point-and-Click detective");
         frame.setSize(720 + 15, 720 + 40);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         BufferedImage paper = ImageIO.read(new File(path + "Pictures\\paper.png"));
 
+        //создание массивов объектов для каждой комнаты и частичное заполнение
         ArrayList<ClickableObject> objects0 = new ArrayList<>();
         ArrayList<ClickableObject> objects1 = new ArrayList<>();
         ArrayList<ClickableObject> objects2 = new ArrayList<>();
@@ -42,6 +43,7 @@ public class Main {
             }
         }));
 
+        //создание диалогов для всех персонажей и самих персонажей
         ArrayList<Dialogue> dInspector = new ArrayList<>();
         dInspector.add(new Dialogue(1));
         dInspector.get(0).read(path + "(1)Диалог Сагдена и Джонсона.txt");
@@ -113,6 +115,7 @@ public class Main {
         NPC pilar = new NPC(450,240,250, "Пилар Эстравадос", 60, ImageIO.read(new File(path + "Pictures\\Pilar.png")), dPilar);
         pilar.currentDialogue = 0;
 
+        //создание массивов персонажей для каждой комнаты и добавление туда персонажей
         ArrayList<NPC> npc0 = new ArrayList<>();
         npc0.add(inspectorSugden);
         npc0.add(johnson);
@@ -125,26 +128,25 @@ public class Main {
         npc2.add(george);
         npc2.add(harry);
         npc2.add(magdalene);
-//      npc2.add(david);
-//      npc2.add(hilda);
 
-        ArrayList<NPC> npcDefault = new ArrayList<>();
+        ArrayList<NPC> npc3 = new ArrayList<>();
 
-
+        //создание массива из 4 комнат, карты, игрока и инвентаря
         Room[] rooms = new Room[4];
         rooms[0] = new Room("Холл", ImageIO.read(new File(path + "Pictures\\Hall.png")), objects0, npc0);
         rooms[1] = new Room("Комната Симеона Ли", ImageIO.read(new File(path + "Pictures\\Li Bedroom.png")), objects1, npc1);
         rooms[2] = new Room("Гостинная", ImageIO.read(new File(path + "Pictures\\Living Room.png")), objects2, npc2);
-        rooms[3] = new Room("Кабинет", ImageIO.read(new File(path + "Pictures\\Office.png")), objects3, npcDefault);
+        rooms[3] = new Room("Кабинет", ImageIO.read(new File(path + "Pictures\\Office.png")), objects3, npc3);
         Map map = new Map(rooms);
         PlayerCharacter playerCharacter = new PlayerCharacter(map.rooms[map.currentRoom]);
         Inventory inventory = new Inventory(new ArrayList<>());
 
+        //создание панели, добавление ее в рамку, установка видимости
         MyPanel panel = new MyPanel(playerCharacter, map, inventory);
         frame.add(panel);
         frame.setVisible(true);
 
-
+        //объявление булевских переменных, отвечающих за сюжет, а так же за затемнения
         boolean theyLeftTheHall = false;
         boolean dialogueAboutKeyHappend = false;
         boolean sawAMess = false;
@@ -161,22 +163,16 @@ public class Main {
         boolean gotLighter5 = false;
         boolean gotDarker6 = false;
         boolean gotLighter6 = false;
-        boolean gotDarker7 = false;
-        boolean gotLighter7 = false;
-        boolean gotDarker8 = false;
-        boolean gotLighter8 = false;
-
         boolean sugdenLeftOffice = false;
         boolean sugdenNewD = false;
         boolean addedDiamonds = false;
 
 
-
+        //цикл, выполняющийся бесконечно, пока не завершится программа
+        // в нем постоянно перерисовывается панель и проверяются различные переменные на предмет продвижения по сюжету
         while (true) {
             Thread.sleep(1000 / 400);
             frame.repaint();
-
-            //System.out.println(inspectorSugden.dialogues[1].ended);
 
             if (inspectorSugden.dialogues.get(0).ended && inspectorSugden.currentDialogue == 0) {
                 inspectorSugden.currentDialogue = 1;
