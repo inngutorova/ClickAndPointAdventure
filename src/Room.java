@@ -19,15 +19,11 @@ public class Room {
 
     }
 
+    //отрисовка
     public void draw(Graphics g) {
-        //g.setColor(Color.BLACK);
-        //g.fillRect(0, 0, width, height - playZone);
-        //g.setColor(Color.gray);
-        //g.fillRect(0, height - playZone, width, playZone);
         g.drawImage(background, 0, 0, width, height-40, null);
         g.setColor(Color.black);
         g.fillRect(0,720-40,720,40);
-        g.drawLine(0, height - playZone, width, height - playZone);
 
         for (int i = 0; i < objects.size(); ++i) {
             if (!objects.get(i).got) {
