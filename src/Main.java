@@ -392,68 +392,6 @@ public class Main {
             if(addedDiamonds && map.rooms[3].objects.get(1).got && lydia.currentDialogue==0) {
                 lydia.currentDialogue = 1;
             }
-
-
-
-
-//            if (inspectorSugden.dialogues.get(4).ended && !gotDarker6) {
-//                panel.gettingDarker = true;
-//                if (panel.visibility == 254) {
-//                    gotDarker6 = true;
-//                    panel.gettingDarker = false;
-//                    map.rooms[2].npc.remove(david);
-//                    map.rooms[3].npc.add(david);
-//                    david.currentDialogue = 1;
-//                }
-//            }
-//
-//            if (gotDarker6 && !gotLighter6) {
-//                panel.gettingLighter = true;
-//                if (panel.visibility == 1) {
-//                    gotLighter6 = true;
-//                    panel.gettingLighter = false;
-//                }
-//            }
-//
-//            if (david.dialogues.get(1).ended && !gotDarker7) {
-//                panel.gettingDarker = true;
-//                if (panel.visibility == 254) {
-//                    gotDarker7 = true;
-//                    panel.gettingDarker = false;
-//                    map.rooms[3].npc.remove(david);
-//                    map.rooms[3].npc.add(hilda);
-//                    hilda.currentDialogue = 1;
-//                }
-//            }
-//
-//            if (gotDarker7 && !gotLighter7) {
-//                panel.gettingLighter = true;
-//                if (panel.visibility == 1) {
-//                    gotLighter7 = true;
-//                    panel.gettingLighter = false;
-//                }
-//            }
-//
-//            if (hilda.dialogues.get(1).ended && !gotDarker8) {
-//                panel.gettingDarker = true;
-//                if (panel.visibility == 254) {
-//                    gotDarker8 = true;
-//                    panel.gettingDarker = false;
-//                    map.rooms[3].npc.remove(hilda);
-//                    map.rooms[3].npc.add(pilar);
-//                    pilar.currentDialogue = 1;
-//                }
-//            }
-//
-//            if (gotDarker8 && !gotLighter8) {
-//                panel.gettingLighter = true;
-//                if (panel.visibility == 1) {
-//                    gotLighter8 = true;
-//                    panel.gettingLighter = false;
-//                }
-//            }
-
-
         }
     }
 }
