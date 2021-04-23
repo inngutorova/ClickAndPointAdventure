@@ -1,4 +1,3 @@
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -29,6 +28,7 @@ public class Inventory {
         backImage = ImageIO.read(new File("G:\\Java\\ClickAndPointAdventure\\src\\Pictures\\IventoryBack.png"));
     }
 
+    //отрисовка
     public void draw(Graphics g) {
         if (opened) {
             g.drawImage(backImage, 60, 120, 600, 480, null);
@@ -45,6 +45,7 @@ public class Inventory {
         }
     }
 
+    //присвоение добавленным объектам координат для инвентаря
     public void update() {
         for (int i = 0; i<objects.size(); ++i) {
             objects.get(i).width = 60;
